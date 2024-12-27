@@ -1,4 +1,6 @@
+using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ProductsAPI.Models;
 
 namespace ProductsAPI.Controllers
@@ -7,38 +9,28 @@ namespace ProductsAPI.Controllers
     [Route("api/[controller]")]
     public class ProductsController:ControllerBase{
 
-        private static List<Product>  _products;
+        private readonly ProductContext  _context;
 
-        public ProductsController()
+        public ProductsController(ProductContext context)
         {
-
-            _products=
-            [
-                new Product{ ProductId=1, ProductName="IPhone 14", Price=60000,IsActive=true },
-                new Product{ ProductId=2, ProductName="IPhone 15", Price=70000,IsActive=true },
-                new Product{ ProductId=3, ProductName="IPhone 16", Price=80000,IsActive=true },
-            ];
-
-           
+            _context=context;
+                      
         }
         [HttpGet]
-        public IActionResult GetProducts(){
+        public async Task<IActionResult> GetProducts(){
 
-            if(_products==null){
-                return NotFound();
-            }
-
-            return Ok(_products);
+            var products=  await _context.Products.ToListAsync();
+            return Ok(products);
        
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetProducts(int? id){
+        public async Task<IActionResult> GetProducts(int? id){
            if(id==null){
             return NotFound();
            }
 
-           var p = _products.FirstOrDefault(x=>x.ProductId==id);
+            var p = await _context.Products.FirstOrDefaultAsync(i => i.ProductId == id);
 
            if( p==null){
             return NotFound();
@@ -48,7 +40,70 @@ namespace ProductsAPI.Controllers
 
         }
 
+        [HttpPost]
+        public async Task<IActionResult> CreateProduct(Product entity){
 
+                _context.Products.Add(entity);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction(nameof(GetProducts), new {id = entity.ProductId},entity);
+
+
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateProduct(int id,Product entity){
+
+            if(id== entity.ProductId){
+                 return BadRequest();
+            }
+
+            var oldObject= await _context.Products.FirstOrDefaultAsync(i=>i.ProductId==id);
+            if(oldObject==null){
+                return NotFound();
+            }
+
+
+            oldObject.ProductName= entity.ProductName;
+            oldObject.Price=entity.Price;
+            oldObject.IsActive=entity.IsActive;
+
+            
+            try{
+                await _context.SaveChangesAsync();
+            }
+            catch(Exception E){
+                return NotFound();
+            }
+
+            return NoContent();
+
+        }
+
+
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduct(int id){
+            if(id==null){
+                return NotFound();
+            }
+
+            var product= await _context.Products.FirstOrDefaultAsync(i=>i.ProductId==id);
+            if(product==null){
+                    return NotFound();
+            }
+
+            _context.Products.Remove(product);
+
+            try{
+                await _context.SaveChangesAsync();
+            }
+            catch(Exception e){
+
+                return NotFound();
+            }
+            return NoContent();
+
+        }
     }
 
 }
