@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\aybuk\\OneDrive\\Masaüstü\\ProductsAPI\\ProductsAPI.csproj": {}
+    "C:\\Users\\aybuk\\OneDrive\\Masaüstü\\ProductsAPI\\ProductsApi\\ProductsAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\aybuk\\OneDrive\\Masaüstü\\ProductsAPI\\ProductsAPI.csproj": {
+    "C:\\Users\\aybuk\\OneDrive\\Masaüstü\\ProductsAPI\\ProductsApi\\ProductsAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\aybuk\\OneDrive\\Masaüstü\\ProductsAPI\\ProductsAPI.csproj",
+        "projectUniqueName": "C:\\Users\\aybuk\\OneDrive\\Masaüstü\\ProductsAPI\\ProductsApi\\ProductsAPI.csproj",
         "projectName": "ProductsAPI",
-        "projectPath": "C:\\Users\\aybuk\\OneDrive\\Masaüstü\\ProductsAPI\\ProductsAPI.csproj",
+        "projectPath": "C:\\Users\\aybuk\\OneDrive\\Masaüstü\\ProductsAPI\\ProductsApi\\ProductsAPI.csproj",
         "packagesPath": "C:\\Users\\aybuk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\aybuk\\OneDrive\\Masaüstü\\ProductsAPI\\obj\\",
+        "outputPath": "C:\\Users\\aybuk\\OneDrive\\Masaüstü\\ProductsAPI\\ProductsApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -53,6 +53,10 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[9.0.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[7.2.0, )"
             }
           },
           "imports": [
