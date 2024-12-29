@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProductsAPI.DTO;
@@ -6,6 +7,7 @@ using ProductsAPI.Models;
 
 namespace ProductsAPI.Controllers
 {
+    
     [ApiController]
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
@@ -28,24 +30,29 @@ namespace ProductsAPI.Controllers
             return Ok(productDtos);
         }
 
+      [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProduct(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return NotFound(new { message = "Product ID is null" });
             }
 
+            // Log the received ID
+            Console.WriteLine($"Received Product ID: {id}");
+
             var product = await _context.Products
-                .FirstOrDefaultAsync(i => i.ProductId == id);
+                .Where(i => i.ProductId == id)
+                .Select(p => ProductToDto(p))
+                .FirstOrDefaultAsync();
 
             if (product == null)
             {
-                return NotFound();
+                return NotFound(new { message = "Product not found" });
             }
 
-            var productDto = ProductToDto(product);
-            return Ok(productDto);
+            return Ok(product);
         }
 
         [HttpPost]
@@ -111,12 +118,15 @@ namespace ProductsAPI.Controllers
 
         private static ProductDto ProductToDto(Product p)
         {
-            return new ProductDto
-            {
-                ProductId = p.ProductId,
-                ProductName = p.ProductName,
-                Price = p.Price
+            var entity= new ProductDto();
+            if(p!=null){
+                entity.ProductId= p.ProductId;
+                entity.ProductName=p.ProductName;
+                entity.Price=p.Price;
             };
+
+            return entity;
+            
         }
     }
 }
