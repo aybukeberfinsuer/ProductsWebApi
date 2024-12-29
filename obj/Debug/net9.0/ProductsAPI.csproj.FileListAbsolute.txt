@@ -157,3 +157,4 @@ C:\Users\aybuk\OneDrive\Masaüstü\ProductsAPI\ProductsApi\bin\Debug\net9.0\runt
 C:\Users\aybuk\OneDrive\Masaüstü\ProductsAPI\ProductsApi\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\aybuk\OneDrive\Masaüstü\ProductsAPI\ProductsApi\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\aybuk\OneDrive\Masaüstü\ProductsAPI\ProductsApi\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\aybuk\OneDrive\Masaüstü\ProductsAPI\ProductsApi\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
