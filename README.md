@@ -4,7 +4,7 @@ Bu projede, ürünlerin eklenmesi, silinmesi, güncellenmesi ve görüntülenmes
 
 ## JWT Kimlik Doğrulama
 
-Projenin ikinci aşamasında, **JWT (JSON Web Token)** ile kimlik doğrulama işlemleri üzerinde çalıştım. Kullanıcıların güvenli bir şekilde giriş yapabilmesi için JWT tabanlı kimlik doğrulama sistemi entegre edildi. Bu sayede kullanıcılar yalnızca geçerli bir token ile API'ye erişebileceklerdir.
+Projenin ikinci aşamasında, **JWT (JSON Web Token)** ile kimlik doğrulama işlemleri üzerinde çalıştım. Kullanıcıların güvenli bir şekilde giriş yapabilmesi için JWT tabanlı kimlik doğrulama sistemi entegre edildi. Bu sayede kullanıcılar yalnızca geçerli bir token ile API'ye erişebileceklerdir. Gerekli kaynaklardan bu konu hakkında araştırmalar yaptım.
 
 ## HTML ile Test
 
